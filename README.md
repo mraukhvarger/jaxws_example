@@ -68,12 +68,56 @@ public class HelloProvider {
 ...
 ```
 
+## Клиент
 
+### pom.xml
 
+```
+...
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jvnet.jax-ws-commons</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <packageName>com.ystu.generated</packageName>
+                            <sourceDestDir>${project.basedir}/src/main/java</sourceDestDir>
+                            <wsdlUrls>
+                                <wsdlUrl>http://win:8080/jaxws_server/helloProvider?wsdl</wsdlUrl>
+                            </wsdlUrls>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${project.basedir}/src/main/java/com/ystu/generated</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+...
+```
 
+### main()
 
-
-
-
-
-
+```
+...
+    public static void main(String[] args) {
+        System.out.println(new HelloProviderService().getHelloProviderPort().sayHello("User"));
+        System.out.println(new HelloProviderService().getHelloProviderPort().sum(10, 20));
+    }
+...
+```
