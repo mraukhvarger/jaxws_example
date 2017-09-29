@@ -5,7 +5,7 @@
 
 ### pom.xml
 
-```
+```xml
 ...
     <dependencies>
         <dependency>
@@ -25,7 +25,7 @@
 
 ### HelloProvider
 
-```
+```java
 @WebService
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public class HelloProvider {
@@ -41,7 +41,7 @@ public class HelloProvider {
 
 ### sun-jaxws.xml
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
     <endpoint name="HelloProvider" implementation="com.ystu.jaxws_server.HelloProvider"
@@ -51,7 +51,7 @@ public class HelloProvider {
 
 ### web.xml
 
-```
+```xml
 ...
     <listener>
         <listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
@@ -72,7 +72,7 @@ public class HelloProvider {
 
 ### pom.xml
 
-```
+```xml
 ...
     <build>
         <plugins>
@@ -113,7 +113,7 @@ public class HelloProvider {
 
 ### main()
 
-```
+```java
 ...
     public static void main(String[] args) {
         System.out.println(new HelloProviderService().getHelloProviderPort().sayHello("User"));
